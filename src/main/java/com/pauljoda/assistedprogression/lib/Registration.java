@@ -1,19 +1,12 @@
 package com.pauljoda.assistedprogression.lib;
 
-import com.pauljoda.assistedprogression.common.blocks.EnderPadBlock;
-import com.pauljoda.assistedprogression.common.blocks.PlayerPlateBlock;
 import com.pauljoda.assistedprogression.common.blocks.SpawnerFrameBlock;
 import com.pauljoda.assistedprogression.common.blocks.SunBlock;
-import com.pauljoda.assistedprogression.common.blocks.entity.EnderPadBlockEntity;
 import com.pauljoda.assistedprogression.common.blocks.entity.SunBlockEntity;
 import com.pauljoda.assistedprogression.common.entity.NetEntity;
 import com.pauljoda.assistedprogression.common.items.*;
-import com.pauljoda.assistedprogression.common.items.container.TrashBagContainer;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -21,10 +14,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -87,36 +78,36 @@ public class Registration {
         }
     };
 
-    public static CreativeModeTab tabAssistedProgressionPipettes = new CreativeModeTab(Reference.MOD_ID + "_pipettes") {
-        @Override
-        public @NotNull ItemStack makeIcon() {
-            return new ItemStack(PIPETTE_ITEM.get());
-        }
-    };
+//    public static CreativeModeTab tabAssistedProgressionPipettes = new CreativeModeTab(Reference.MOD_ID + "_pipettes") {
+//        @Override
+//        public @NotNull ItemStack makeIcon() {
+//            return new ItemStack(PIPETTE_ITEM.get());
+//        }
+//    };
 
     public static final RegistryObject<Item> SPAWNER_RELOCATOR_ITEM =
             ITEMS.register("spawner_relocator", SpawnerRelocatorItem::new);
 
-    public static final RegistryObject<Item> MAGNET_ITEM =
-            ITEMS.register("magnet", MagnetItem::new);
+//    public static final RegistryObject<Item> MAGNET_ITEM =
+//            ITEMS.register("magnet", MagnetItem::new);
 
-    public static final RegistryObject<Item> ELECTRIC_MAGNET_ITEM =
-            ITEMS.register("electric_magnet", ElectricMagnetItem::new);
+//    public static final RegistryObject<Item> ELECTRIC_MAGNET_ITEM =
+//            ITEMS.register("electric_magnet", ElectricMagnetItem::new);
 
-    public static final RegistryObject<Item> PIPETTE_ITEM =
-            ITEMS.register("pipette", PipetteItem::new);
+//    public static final RegistryObject<Item> PIPETTE_ITEM =
+//            ITEMS.register("pipette", PipetteItem::new);
 
     public static final RegistryObject<Item> PARASHOES_ITEM =
             ITEMS.register("parashoes", ParashoesItem::new);
 
-    public static final RegistryObject<Item> CLIMBING_GLOVES_ITEM =
-            ITEMS.register("climbing_gloves", ClimbingGlovesItem::new);
+//    public static final RegistryObject<Item> CLIMBING_GLOVES_ITEM =
+//            ITEMS.register("climbing_gloves", ClimbingGlovesItem::new);
 
-    public static final RegistryObject<Item> TRASH_BAG_ITEM =
-            ITEMS.register("trash_bag", () -> new TrashBagItem(1));
+//    public static final RegistryObject<Item> TRASH_BAG_ITEM =
+//            ITEMS.register("trash_bag", () -> new TrashBagItem(1));
 
-    public static final RegistryObject<Item> HEFTY_BAG_ITEM =
-            ITEMS.register("hefty_bag", () -> new TrashBagItem(18));
+//    public static final RegistryObject<Item> HEFTY_BAG_ITEM =
+//            ITEMS.register("hefty_bag", () -> new TrashBagItem(18));
 
     public static final RegistryObject<Item> NET_ITEM =
             ITEMS.register("net", NetItem::new);
@@ -128,13 +119,13 @@ public class Registration {
      * Blocks                                                                                                          *
      *******************************************************************************************************************/
 
-    public static final RegistryObject<Block> ENDER_PAD_BLOCK =
-            BLOCKS.register("ender_pad", EnderPadBlock::new);
-    public static final RegistryObject<Item> ENDER_PAD_BLOCK_ITEM = fromBlock(ENDER_PAD_BLOCK);
+//    public static final RegistryObject<Block> ENDER_PAD_BLOCK =
+//            BLOCKS.register("ender_pad", EnderPadBlock::new);
+//    public static final RegistryObject<Item> ENDER_PAD_BLOCK_ITEM = fromBlock(ENDER_PAD_BLOCK);
 
-    public static final RegistryObject<Block> PLAYER_PLATE_BLOCK =
-            BLOCKS.register("player_plate", PlayerPlateBlock::new);
-    public static final RegistryObject<Item> PLAYER_PLATE_BLOCK_ITEM = fromBlock(PLAYER_PLATE_BLOCK);
+//    public static final RegistryObject<Block> PLAYER_PLATE_BLOCK =
+//            BLOCKS.register("player_plate", PlayerPlateBlock::new);
+//    public static final RegistryObject<Item> PLAYER_PLATE_BLOCK_ITEM = fromBlock(PLAYER_PLATE_BLOCK);
 
     public static final RegistryObject<Block> SPAWNER_FRAME_BLOCK =
             BLOCKS.register("spawner_frame", SpawnerFrameBlock::new);
@@ -148,10 +139,10 @@ public class Registration {
      * Block Entity                                                                                                    *
      *******************************************************************************************************************/
 
-    public static final RegistryObject<BlockEntityType<EnderPadBlockEntity>> ENDER_PAD_BLOCK_ENTITY =
-            BLOCK_ENTITY_TYPES.register("ender_pad",
-                    () -> BlockEntityType.Builder.of(EnderPadBlockEntity::new, ENDER_PAD_BLOCK.get
-                            ()).build(null));
+//    public static final RegistryObject<BlockEntityType<EnderPadBlockEntity>> ENDER_PAD_BLOCK_ENTITY =
+//            BLOCK_ENTITY_TYPES.register("ender_pad",
+//                    () -> BlockEntityType.Builder.of(EnderPadBlockEntity::new, ENDER_PAD_BLOCK.get
+//                            ()).build(null));
 
     public static final RegistryObject<BlockEntityType<SunBlockEntity>> SUN_BLOCK_ENTITY =
             BLOCK_ENTITY_TYPES.register("sun",
@@ -162,12 +153,12 @@ public class Registration {
      * Container                                                                                                       *
      *******************************************************************************************************************/
 
-    public static final RegistryObject<MenuType<TrashBagContainer>> TRASH_BAG_CONTAINER =
-            CONTAINERS.register("trash_bag",
-                    () -> IForgeMenuType.create(((windowId, inv, data) ->
-                            new TrashBagContainer(windowId, inv,
-                                    inv.player.getItemInHand(InteractionHand.MAIN_HAND).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null),
-                                    inv.player.getItemInHand(InteractionHand.MAIN_HAND)))));
+//    public static final RegistryObject<MenuType<TrashBagContainer>> TRASH_BAG_CONTAINER =
+//            CONTAINERS.register("trash_bag",
+//                    () -> IForgeMenuType.create(((windowId, inv, data) ->
+//                            new TrashBagContainer(windowId, inv,
+//                                    inv.player.getItemInHand(InteractionHand.MAIN_HAND).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(null),
+//                                    inv.player.getItemInHand(InteractionHand.MAIN_HAND)))));
 
     /*******************************************************************************************************************
      * Entity                                                                                                          *

@@ -44,39 +44,6 @@ public class RecipeGenerator extends RecipeProvider {
                 .unlockedBy("has_ender_pearls", has(Tags.Items.ENDER_PEARLS))
                 .save(consumer);
 
-        // Cheap Magnet
-        ShapedRecipeBuilder
-                .shaped(Registration.MAGNET_ITEM.get())
-                .pattern("I I")
-                .pattern("I I")
-                .pattern(" I ")
-                .define('I', Tags.Items.INGOTS_IRON)
-                .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
-                .save(consumer);
-
-        // Electric Magnet
-        ShapedRecipeBuilder
-                .shaped(Registration.ELECTRIC_MAGNET_ITEM.get())
-                .pattern("D D")
-                .pattern("IRI")
-                .pattern(" I ")
-                .define('I', Tags.Items.INGOTS_IRON)
-                .define('D', Tags.Items.GEMS_DIAMOND)
-                .define('R', Tags.Items.STORAGE_BLOCKS_REDSTONE)
-                .unlockedBy("has_iron", has(Tags.Items.GEMS_DIAMOND))
-                .save(consumer);
-
-        // Pipette
-        ShapedRecipeBuilder
-                .shaped(Registration.PIPETTE_ITEM.get())
-                .pattern("  P")
-                .pattern(" P ")
-                .pattern("G  ")
-                .define('P', Tags.Items.GLASS_PANES)
-                .define('G', Tags.Items.GLASS)
-                .unlockedBy("has_glass", has(Tags.Items.GLASS_PANES))
-                .save(consumer);
-
         // Parashoes
         ShapedRecipeBuilder
                 .shaped(Registration.PARASHOES_ITEM.get())
@@ -88,40 +55,6 @@ public class RecipeGenerator extends RecipeProvider {
                 .define('B', Items.LEATHER_BOOTS)
                 .define('C', Items.WHITE_CARPET)
                 .unlockedBy("has_boots", has(Items.LEATHER_BOOTS))
-                .save(consumer);
-
-        // Climbing Gloves
-        ShapedRecipeBuilder
-                .shaped(Registration.CLIMBING_GLOVES_ITEM.get())
-                .pattern(" L ")
-                .pattern("LIL")
-                .pattern("SLS")
-                .define('L', Tags.Items.LEATHER)
-                .define('I', Tags.Items.INGOTS_IRON)
-                .define('S', Tags.Items.STRING)
-                .unlockedBy("has_leather", has(Tags.Items.LEATHER))
-                .save(consumer);
-
-        // Trash Bag
-        ShapedRecipeBuilder
-                .shaped(Registration.TRASH_BAG_ITEM.get())
-                .pattern("S S")
-                .pattern("L L")
-                .pattern("LLL")
-                .define('S', Tags.Items.STRING)
-                .define('L', Tags.Items.LEATHER)
-                .unlockedBy("has_leather", has(Tags.Items.LEATHER))
-                .save(consumer);
-
-        // Hefty Bag
-        ShapedRecipeBuilder
-                .shaped(Registration.HEFTY_BAG_ITEM.get())
-                .pattern("S S")
-                .pattern("L L")
-                .pattern("LLL")
-                .define('S', Tags.Items.STRING)
-                .define('L', Tags.Items.INGOTS_IRON)
-                .unlockedBy("has_leather", has(Tags.Items.INGOTS_IRON))
                 .save(consumer);
 
         // Net
@@ -148,26 +81,7 @@ public class RecipeGenerator extends RecipeProvider {
                 .save(consumer);
 
         // Blocks ------------------------------------------------------------------------------------------------------
-        // Ender Pad
-        ShapedRecipeBuilder
-                .shaped(Registration.ENDER_PAD_BLOCK_ITEM.get())
-                .pattern("ISI")
-                .pattern("SES")
-                .pattern("ISI")
-                .define('I', Tags.Items.INGOTS_IRON)
-                .define('S', Tags.Items.STONE)
-                .define('E', Tags.Items.ENDER_PEARLS)
-                .unlockedBy("has_pearls", has(Tags.Items.ENDER_PEARLS))
-                .save(consumer);
 
-        // Player Plate
-        ShapedRecipeBuilder
-                .shaped(Registration.PLAYER_PLATE_BLOCK.get())
-                .pattern("  ")
-                .pattern("BB")
-                .define('B', Tags.Items.INGOTS_BRICK)
-                .unlockedBy("has_brick", has(Tags.Items.INGOTS_BRICK))
-                .save(consumer);
 
         ShapedRecipeBuilder
                 .shaped(Registration.SPAWNER_FRAME_BLOCK.get())

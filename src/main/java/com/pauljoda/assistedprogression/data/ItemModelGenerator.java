@@ -33,35 +33,13 @@ public class ItemModelGenerator extends ItemModelProvider {
                 mcLoc("item/generated"),
                 "layer0", modLoc("items/spawner_relocator"));
 
-        // Magnet
-        singleTexture(Registration.MAGNET_ITEM.get().getRegistryName().getPath(),
-                mcLoc("item/generated"),
-                "layer0", modLoc("items/magnet"));
 
-        // Electric Magnet
-        singleTexture(Registration.ELECTRIC_MAGNET_ITEM.get().getRegistryName().getPath(),
-                mcLoc("item/generated"),
-                "layer0", modLoc("items/electro_magnet"));
 
         // Parashoes
         singleTexture(Registration.PARASHOES_ITEM.get().getRegistryName().getPath(),
                 mcLoc("item/generated"),
                 "layer0", modLoc("items/parashoes"));
 
-        // Climbing Gloves
-        singleTexture(Registration.CLIMBING_GLOVES_ITEM.get().getRegistryName().getPath(),
-                mcLoc("item/generated"),
-                "layer0", modLoc("items/climbing_gloves"));
-
-        // Trash Bag
-        singleTexture(Registration.TRASH_BAG_ITEM.get().getRegistryName().getPath(),
-                mcLoc("item/generated"),
-                "layer0", modLoc("items/trash_bag"));
-
-        // Hefty Bag
-        singleTexture(Registration.HEFTY_BAG_ITEM.get().getRegistryName().getPath(),
-                mcLoc("item/generated"),
-                "layer0", modLoc("items/hefty_bag"));
 
         // Net
         singleTexture(Registration.NET_ITEM.get().getRegistryName().getPath(),
@@ -74,12 +52,6 @@ public class ItemModelGenerator extends ItemModelProvider {
                 "layer0", modLoc("items/net_launcher"));
 
         // Blocks ------------------------------------------------------------------------------------------------------
-
-        // Ender Pad
-        createItemBlock(Registration.ENDER_PAD_BLOCK, "block/ender_pad");
-
-        // Player Plate
-        createItemBlock(Registration.PLAYER_PLATE_BLOCK, "block/player_plate");
 
         // Spawner Frame
         createItemBlock(Registration.SPAWNER_FRAME_BLOCK, "block/spawner_frame");

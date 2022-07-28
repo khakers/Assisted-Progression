@@ -1,7 +1,7 @@
 modLoader="javafml" #mandatory
 loaderVersion="[40,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
 license="http://creativecommons.org/licenses/by-nc-sa/4.0/"
-issueTrackerURL="https://github.com/pauljoda/Assisted-Progression/issues"
+issueTrackerURL=""
 [[mods]] #mandatory
 modId="assisted_progression" #mandatory
 version="0.8" #mandatory
@@ -10,6 +10,7 @@ authors="pauljoda" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
 Mod with various utilities
+Modified by khakers, do not report bugs to the original authors
 '''
 [[dependencies.assisted_progression]]
 modId = "minecraft"
