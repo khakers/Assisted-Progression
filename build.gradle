@@ -2,10 +2,13 @@ buildscript {
     repositories {
         // These repositories are only for Gradle plugins, put any other repositories in the repository block further below
         maven { url = 'https://maven.minecraftforge.net' }
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public' }
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath "org.spongepowered:mixingradle:0.7-SNAPSHOT"
+
     }
 }
 plugins {
@@ -14,8 +17,11 @@ plugins {
 }
 apply plugin: 'net.minecraftforge.gradle'
 
+apply plugin: 'org.spongepowered.mixin'
 
-version = '0.8'
+
+
+version = '0.9'
 group = 'com.pauljoda.assisted_progression' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'assisted_progression'
 
@@ -28,6 +34,10 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
+
+            arg '-mixin.config=create.mixins.json'
+            arg '-mixin.config=flywheel.mixins.json'
+
 
             // Recommended logging data for a userdev environment
             // The markers can be added/remove as needed separated by commas.
@@ -53,6 +63,9 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
+
+            arg '-mixin.config=create.mixins.json'
+
 
             property 'forge.logging.markers', 'REGISTRIES'
 
@@ -99,6 +112,10 @@ minecraft {
         data {
             workingDirectory project.file('run')
 
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+
+
             property 'forge.logging.markers', 'REGISTRIES'
 
             property 'forge.logging.console.level', 'debug'
@@ -141,6 +158,12 @@ repositories {
             password new File("ACCESS_TOKEN").text
         }
     }
+    maven {
+        url 'https://www.cursemaven.com'
+        content {
+            includeGroup "curse.maven"
+        }
+    }
     maven { url 'https://modmaven.dev/' }
 }
 
@@ -148,20 +171,27 @@ dependencies {
     // Specify the version of Minecraft to use. If this is any group other than 'net.minecraft', it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency, and its patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft 'net.minecraftforge:forge:1.18.2-40.1.25'
+    minecraft 'net.minecraftforge:forge:1.18.2-40.1.54'
     compileOnly  group: "com.pauljoda", name: "nucleus", version: "+", classifier: "dev"
     runtimeOnly  group: "com.pauljoda", name: "nucleus", version: "+", classifier: "dev"
+
+    implementation fg.deobf("curse.maven:create-328085:3872145")
+    implementation fg.deobf("curse.maven:flywheel-486392:3871082")
+
 
     // compile against the JEI API but do not include it at runtime
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${JEI_version}:api")
     // at runtime, use the full JEI jar
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${JEI_version}")
 
-    // For testing with power
-    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}")// core
-    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:additions")// Mekanism: Additions
-    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:generators")// Mekanism: Generators
-    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:tools")// Mekanism: Tools
+    annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
+
+
+//    // For testing with power
+//    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}")// core
+//    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:additions")// Mekanism: Additions
+//    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:generators")// Mekanism: Generators
+//    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:tools")// Mekanism: Tools
 
 }
 

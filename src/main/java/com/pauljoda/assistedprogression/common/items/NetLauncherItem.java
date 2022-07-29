@@ -4,6 +4,7 @@ import com.pauljoda.assistedprogression.common.entity.NetEntity;
 import com.pauljoda.assistedprogression.lib.Registration;
 import com.pauljoda.nucleus.common.items.EnergyContainingItem;
 import com.pauljoda.nucleus.util.EnergyUtils;
+import com.simibubi.create.content.curiosities.armor.BackTankUtil;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
@@ -38,6 +39,8 @@ public class NetLauncherItem extends BaseItem {
     // Max energy storage
     private static final int ENERGY_CAPACITY = 32000;
 
+    private static final int usesPerTank = 5;
+
     protected @Nullable ItemStack getAmmo(Player player) {
         for (ItemStack stack :
                 player.getInventory().items) {
@@ -65,7 +68,7 @@ public class NetLauncherItem extends BaseItem {
     public InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand hand) {
         // If we have ammo
         var ammo = getAmmo(player);
-        if(ammo != null) {
+        if (ammo != null) {
             player.startUsingItem(hand);
             return new InteractionResultHolder<>(InteractionResult.SUCCESS, player.getItemInHand(hand));
         }
@@ -77,27 +80,23 @@ public class NetLauncherItem extends BaseItem {
     public void releaseUsing(@NotNull ItemStack stack, @NotNull Level level, @NotNull LivingEntity livingEntity,
                              int timeLeft) {
         if (timeLeft <= 7180 && livingEntity instanceof Player player) {
-            var energyItem = stack.getCapability(CapabilityEnergy.ENERGY);
-            if(energyItem.isPresent()) {
-                var energy = energyItem.orElseGet(null);
-                var requiredEnergy = ENERGY_CAPACITY / 8;
+            if (BackTankUtil.canAbsorbDamage(player, usesPerTank)) {
+
                 var ammo = getAmmo(player);
-                if(energy.getEnergyStored() >= requiredEnergy && ammo != null) {
-                    // Spawn net and launch
-                    level.playSound(null, player.getX(), player.getY(), player.getZ(),
-                            SoundEvents.CROSSBOW_SHOOT, SoundSource.NEUTRAL, 0.5F, 0.6F);
 
-                    if(!level.isClientSide) {
-                        var netEntity = new NetEntity(level, player);
-                        netEntity.setItem(ammo);
-                        netEntity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
-                        level.addFreshEntity(netEntity);
-                    }
+                // Spawn net and launch
+                level.playSound(null, player.getX(), player.getY(), player.getZ(),
+                        SoundEvents.CROSSBOW_SHOOT, SoundSource.NEUTRAL, 0.5F, 0.6F);
 
-                    if(!player.isCreative()) {
-                        ammo.shrink(1);
-                        energy.extractEnergy(ENERGY_CAPACITY / 8, false);
-                    }
+                if (!level.isClientSide) {
+                    var netEntity = new NetEntity(level, player);
+                    netEntity.setItem(ammo);
+                    netEntity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
+                    level.addFreshEntity(netEntity);
+                }
+
+                if (!player.isCreative()) {
+                    ammo.shrink(1);
                 }
             }
         }
@@ -111,36 +110,34 @@ public class NetLauncherItem extends BaseItem {
 
     @Override
     public int getBarWidth(ItemStack stack) {
-        var energyItem = stack.getCapability(CapabilityEnergy.ENERGY);
-        if(energyItem.isPresent()) {
-            var energyHandler = energyItem.orElse(null);
-            return Math.min(13 * energyHandler.getEnergyStored() / energyHandler.getMaxEnergyStored(), 13);
-        }
-        return super.getBarWidth(stack);
+        return BackTankUtil.getBarWidth(stack, usesPerTank);
     }
 
     @Override
     public int getBarColor(@NotNull ItemStack stack) {
-        return 16733525;
-    }
+        return BackTankUtil.getBarColor(stack, usesPerTank);
 
-    @Override
-    public boolean isDamaged(ItemStack stack) {
-        var energyCapability = stack.getCapability(CapabilityEnergy.ENERGY);
-        if(!energyCapability.isPresent())
-            return super.isDamaged(stack);
-        var energyStorage = energyCapability.orElse(null);
-        return energyStorage.getEnergyStored() != energyStorage.getMaxEnergyStored();
     }
 
     @Override
     public boolean isBarVisible(ItemStack stack) {
-        return stack.getCapability(CapabilityEnergy.ENERGY).map(e -> e.getEnergyStored() != e.getMaxEnergyStored()).orElse(super.isBarVisible(stack));
+        return BackTankUtil.isBarVisible(stack, usesPerTank);
     }
 
-    @Override
-    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level,
-                                @NotNull List<Component> toolTip, @NotNull TooltipFlag advanced) {
-        EnergyUtils.addToolTipInfo(stack, toolTip);
-    }
+//    @Override
+//    public boolean isDamaged(ItemStack stack) {
+//
+//        var energyCapability = stack.getCapability(CapabilityEnergy.ENERGY);
+//        if (!energyCapability.isPresent())
+//            return super.isDamaged(stack);
+//        var energyStorage = energyCapability.orElse(null);
+//        return energyStorage.getEnergyStored() != energyStorage.getMaxEnergyStored();
+//    }
+
+//    @Override
+//    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level,
+//                                @NotNull List<Component> toolTip, @NotNull TooltipFlag advanced) {
+////        EnergyUtils.addToolTipInfo(stack, toolTip);
+//
+//    }
 }

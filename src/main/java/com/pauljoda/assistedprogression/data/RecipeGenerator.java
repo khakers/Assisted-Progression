@@ -5,6 +5,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -69,16 +70,16 @@ public class RecipeGenerator extends RecipeProvider {
                 .save(consumer);
 
         // Launcher
-        ShapedRecipeBuilder
-                .shaped(Registration.NET_LAUNCHER_ITEM.get())
-                .pattern("   ")
-                .pattern("IIB")
-                .pattern(" IR")
-                .define('I', Tags.Items.INGOTS_IRON)
-                .define('B', Tags.Items.STORAGE_BLOCKS_IRON)
-                .define('R', Tags.Items.STORAGE_BLOCKS_REDSTONE)
-                .unlockedBy("has_redstone", has(Tags.Items.STORAGE_BLOCKS_REDSTONE))
-                .save(consumer);
+//        ShapedRecipeBuilder
+//                .shaped(Registration.NET_LAUNCHER_ITEM.get())
+//                .pattern("   ")
+//                .pattern("IIB")
+//                .pattern(" IR")
+//                .define('I', Tags.Items.INGOTS_IRON)
+//                .define('B', Tags.Items.STORAGE_BLOCKS_IRON)
+//                .define('R', Tags.Items.STORAGE_BLOCKS_REDSTONE)
+//                .unlockedBy("has_redstone", has(Tags.Items.STORAGE_BLOCKS_REDSTONE))
+//                .save(consumer);
 
         // Blocks ------------------------------------------------------------------------------------------------------
 
@@ -94,16 +95,15 @@ public class RecipeGenerator extends RecipeProvider {
                 .define('E', Items.END_CRYSTAL)
                 .unlockedBy("has_endcrystal", has(Items.END_CRYSTAL))
                 .save(consumer);
-
-        ShapedRecipeBuilder
-                .shaped(Registration.SUN_BLOCK.get())
-                .pattern("GMG")
-                .pattern("MDM")
-                .pattern("GMG")
-                .define('G', Tags.Items.DUSTS_GLOWSTONE)
-                .define('M', Items.BONE_MEAL)
-                .define('D', Items.LANTERN)
-                .unlockedBy("hasLantern", has(Items.LANTERN))
-                .save(consumer);
+//        ShapedRecipeBuilder
+//                .shaped(Registration.SUN_BLOCK.get())
+//                .pattern("GMG")
+//                .pattern("MDM")
+//                .pattern("GMG")
+//                .define('G', Tags.Items.DUSTS_GLOWSTONE)
+//                .define('M', Items.BONE_MEAL)
+//                .define('D', "create:blaze_cake")
+//                .unlockedBy("hasLantern", has(Items.LANTERN))
+//                .save(consumer);
     }
 }

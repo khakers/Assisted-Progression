@@ -23,8 +23,6 @@ public class LootTableGenerator extends BaseLootTableGenerator {
     @Override
     protected void addTables() {
 
-
-
         // Spawner Frame
         lootTables.put(Registration.SPAWNER_FRAME_BLOCK.get(),
                 createSimpleTable("spawner_frame", Registration.SPAWNER_FRAME_BLOCK.get()));

@@ -4,9 +4,9 @@ license="http://creativecommons.org/licenses/by-nc-sa/4.0/"
 issueTrackerURL=""
 [[mods]] #mandatory
 modId="assisted_progression" #mandatory
-version="0.8" #mandatory
-displayName="Assisted Progression" #mandatory
-authors="pauljoda" #optional
+version="0.9" #mandatory
+displayName="Slightly Assisted Progression" #mandatory
+authors="khakers" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
 Mod with various utilities
@@ -32,3 +32,10 @@ mandatory=true
 versionRange="[2.0,)"
 ordering="BEFORE"
 side="BOTH"
+
+#[[dependencies.assisted_progression]]
+#modId="create"
+#mandatory=true
+#versionRange="[2.0,)"
+#ordering="BEFORE"
+#side="BOTH"

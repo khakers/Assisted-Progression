@@ -2,7 +2,6 @@ package com.pauljoda.assistedprogression.network;
 
 import com.pauljoda.assistedprogression.lib.Reference;
 import com.pauljoda.assistedprogression.network.packets.BoneMealParticlesPacket;
-import com.pauljoda.assistedprogression.network.packets.NotifyServerOfTrashBagChanges;
 import com.pauljoda.nucleus.network.packet.INetworkMessage;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkEvent;
@@ -36,7 +35,6 @@ public class PacketManager {
      * Registers all packets
      */
     public static void initPackets() {
-        registerMessage(NotifyServerOfTrashBagChanges.class, NotifyServerOfTrashBagChanges::process);
         registerMessage(BoneMealParticlesPacket.class, BoneMealParticlesPacket::process);
     }
 
